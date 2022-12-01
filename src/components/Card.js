@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import '../style/card.css';
 
 class Card extends Component {
   render() {
