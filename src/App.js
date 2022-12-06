@@ -19,7 +19,47 @@ class App extends React.Component {
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, this.validateSaveButton);
+  };
+
+  validateSaveButton = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+
+    const validations = {
+      maxValue: 210,
+      minTxtLength: 4,
+      minAttr: 0,
+      maxAttr: 90,
+    };
+    // valida se o valor dos atributos estão entre o menor e maior valor possível
+    const attrValue = Number(cardAttr1) >= validations.minAttr
+      && Number(cardAttr1) <= validations.maxAttr
+      && Number(cardAttr2) >= validations.minAttr
+      && Number(cardAttr2) <= validations.maxAttr
+      && Number(cardAttr3) >= validations.minAttr
+      && Number(cardAttr3) <= validations.maxAttr;
+
+    // valida se a somatória dos atributos não extrapola o maior valor estabelecido
+    const maxSum = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)
+      <= validations.maxValue;
+
+    // valida se os campos estão vazios e possuem um tamanho mínimo
+    const isFieldEmpty = cardName.length >= validations.minTxtLength
+      && cardDescription.length >= validations.minTxtLength
+      && cardImage.length >= validations.minTxtLength
+      && cardRare.length >= validations.minTxtLength;
+
+    this.setState({
+      isSaveButtonDisabled: !(isFieldEmpty && maxSum && attrValue),
+    });
   };
 
   onSaveButtonClick = () => {};
@@ -37,7 +77,7 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <>
+      <main>
         <Form
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
@@ -53,7 +93,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
-      </>
+      </main>
     );
   }
 }
