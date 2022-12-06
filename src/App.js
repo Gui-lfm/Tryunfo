@@ -7,13 +7,14 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: 0,
+    cardAttr2: 0,
+    cardAttr3: 0,
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    cardDeck: [],
   };
 
   onInputChange = ({ target }) => {
@@ -62,7 +63,42 @@ class App extends React.Component {
     });
   };
 
-  onSaveButtonClick = () => {};
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const {
+      cardName,
+      cardImage,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const newCard = {
+      cardName,
+      cardImage,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState((prev) => ({
+      cardDeck: [...prev.cardDeck, newCard],
+      cardName: '',
+      cardImage: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardRare: 'normal',
+      cardTrunfo: false,
+    }));
+  };
 
   render() {
     const {
