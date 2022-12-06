@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import CardList from './components/CardList';
 import Form from './components/Form';
 import './style/app.css';
 
@@ -7,9 +8,9 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: 0,
-    cardAttr2: 0,
-    cardAttr3: 0,
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
@@ -97,9 +98,9 @@ class App extends React.Component {
       cardName: '',
       cardImage: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardRare: 'normal',
     }));
   };
@@ -114,26 +115,32 @@ class App extends React.Component {
       cardAttr3,
       cardRare,
       cardTrunfo,
+      cardDeck,
     } = this.state;
 
     return (
-      <main>
-        <Form
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          { ...this.state }
-        />
-        <Card
-          cardName={ cardName }
-          cardImage={ cardImage }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
-      </main>
+      <>
+        <main>
+          <Form
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            { ...this.state }
+          />
+          <Card
+            cardName={ cardName }
+            cardImage={ cardImage }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </main>
+        <section>
+          <CardList cardDeck={ cardDeck } />
+        </section>
+      </>
     );
   }
 }
