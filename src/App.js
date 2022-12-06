@@ -105,6 +105,23 @@ class App extends React.Component {
     }));
   };
 
+  deleteCard = (event) => {
+    event.preventDefault();
+    const { cardDeck } = this.state;
+    const { name } = event.target;
+
+    this.setState({
+      cardDeck: cardDeck.filter((card) => card.cardName !== name),
+    });
+
+    if (cardDeck.some((card) => card.cardTrunfo === true)) {
+      this.setState({
+        cardTrunfo: false,
+        hasTrunfo: false,
+      });
+    }
+  };
+
   render() {
     const {
       cardName,
@@ -138,7 +155,7 @@ class App extends React.Component {
           />
         </main>
         <section>
-          <CardList cardDeck={ cardDeck } />
+          <CardList cardDeck={ cardDeck } deleteCard={ this.deleteCard } />
         </section>
       </>
     );

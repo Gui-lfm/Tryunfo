@@ -4,12 +4,26 @@ import Card from './Card';
 
 class CardList extends Component {
   render() {
-    const { cardDeck } = this.props;
+    const { cardDeck, deleteCard } = this.props;
 
     return (
       <>
         <h2>Todas as Cartas</h2>
-        {cardDeck.map((card) => <Card key={ card.cardName } { ...card } />)}
+        <section className="cardList">
+          {cardDeck.map((card) => (
+            <div key={ card.cardName }>
+              <Card { ...card } />
+              <button
+                name={ card.cardName }
+                type="button"
+                data-testid="delete-button"
+                onClick={ deleteCard }
+              >
+                Excluir carta
+              </button>
+            </div>
+          ))}
+        </section>
       </>
     );
   }
@@ -28,6 +42,7 @@ CardList.propTypes = {
       CardTrunfo: PropTypes.bool,
     }),
   ).isRequired,
+  deleteCard: PropTypes.func.isRequired,
 };
 
 export default CardList;
