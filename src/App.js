@@ -13,6 +13,7 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     cardDeck: [],
   };
@@ -87,6 +88,10 @@ class App extends React.Component {
       cardTrunfo,
     };
 
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
+
     this.setState((prev) => ({
       cardDeck: [...prev.cardDeck, newCard],
       cardName: '',
@@ -96,7 +101,6 @@ class App extends React.Component {
       cardAttr2: 0,
       cardAttr3: 0,
       cardRare: 'normal',
-      cardTrunfo: false,
     }));
   };
 
