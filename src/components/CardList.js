@@ -11,6 +11,8 @@ class CardList extends Component {
       rareFilter,
       trunfoFilter,
       onInputChange,
+      onTrunfoCheck,
+      isTrunfoFilterChecked,
     } = this.props;
 
     return (
@@ -25,12 +27,14 @@ class CardList extends Component {
             data-testid="name-filter"
             value={ nameFilter }
             onChange={ onInputChange }
+            disabled={ isTrunfoFilterChecked }
           />
           <select
             name="rareFilter"
             data-testid="rare-filter"
             value={ rareFilter }
             onChange={ onInputChange }
+            disabled={ isTrunfoFilterChecked }
           >
             <option>todas</option>
             <option>normal</option>
@@ -44,7 +48,7 @@ class CardList extends Component {
               type="checkbox"
               data-testid="trunfo-filter"
               value={ trunfoFilter }
-              onChange={ onInputChange }
+              onChange={ onTrunfoCheck }
             />
             Super Trunfo
           </label>
@@ -54,7 +58,7 @@ class CardList extends Component {
           {cardDeck
             .filter((card) => card.cardName.includes(nameFilter))
             .filter((card) => card.cardRare === rareFilter || rareFilter === 'todas')
-            .filter((card) => card.cardRare)
+            .filter((card) => (trunfoFilter ? card.cardTrunfo : card))
             .map((card) => (
               <div key={ card.cardName }>
                 <Card { ...card } />
@@ -92,6 +96,8 @@ CardList.propTypes = {
   rareFilter: PropTypes.string.isRequired,
   trunfoFilter: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
+  onTrunfoCheck: PropTypes.func.isRequired,
+  isTrunfoFilterChecked: PropTypes.bool.isRequired,
 };
 
 export default CardList;

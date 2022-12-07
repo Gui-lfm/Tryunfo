@@ -20,12 +20,21 @@ class App extends React.Component {
     nameFilter: '',
     rareFilter: 'todas',
     trunfoFilter: false,
+    isTrunfoFilterChecked: false,
   };
 
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value }, this.validateSaveButton);
+  };
+
+  onTrunfoCheck = ({ target }) => {
+    const { checked } = target;
+    this.setState({
+      trunfoFilter: checked,
+      isTrunfoFilterChecked: checked,
+    });
   };
 
   validateSaveButton = () => {
@@ -104,6 +113,7 @@ class App extends React.Component {
       cardAttr1: '0',
       cardAttr2: '0',
       cardAttr3: '0',
+      cardTrunfo: false,
       cardRare: 'normal',
     }));
   };
@@ -139,6 +149,7 @@ class App extends React.Component {
       nameFilter,
       rareFilter,
       trunfoFilter,
+      isTrunfoFilterChecked,
     } = this.state;
 
     return (
@@ -164,10 +175,12 @@ class App extends React.Component {
           <CardList
             cardDeck={ cardDeck }
             onInputChange={ this.onInputChange }
+            onTrunfoCheck={ this.onTrunfoCheck }
             deleteCard={ this.deleteCard }
             nameFilter={ nameFilter }
             rareFilter={ rareFilter }
             trunfoFilter={ trunfoFilter }
+            isTrunfoFilterChecked={ isTrunfoFilterChecked }
           />
         </section>
       </>
