@@ -17,6 +17,9 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     cardDeck: [],
+    nameFilter: '',
+    rareFilter: 'todas',
+    trunfoFilter: false,
   };
 
   onInputChange = ({ target }) => {
@@ -133,6 +136,9 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       cardDeck,
+      nameFilter,
+      rareFilter,
+      trunfoFilter,
     } = this.state;
 
     return (
@@ -155,7 +161,14 @@ class App extends React.Component {
           />
         </main>
         <section>
-          <CardList cardDeck={ cardDeck } deleteCard={ this.deleteCard } />
+          <CardList
+            cardDeck={ cardDeck }
+            onInputChange={ this.onInputChange }
+            deleteCard={ this.deleteCard }
+            nameFilter={ nameFilter }
+            rareFilter={ rareFilter }
+            trunfoFilter={ trunfoFilter }
+          />
         </section>
       </>
     );
