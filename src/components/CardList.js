@@ -53,6 +53,8 @@ class CardList extends Component {
         <section className="cardList">
           {cardDeck
             .filter((card) => card.cardName.includes(nameFilter))
+            .filter((card) => card.cardRare === rareFilter || rareFilter === 'todas')
+            .filter((card) => card.cardRare)
             .map((card) => (
               <div key={ card.cardName }>
                 <Card { ...card } />
