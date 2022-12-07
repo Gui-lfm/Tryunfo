@@ -9,6 +9,28 @@ class CardList extends Component {
     return (
       <>
         <h2>Todas as Cartas</h2>
+        <section className="filterList">
+          <p>filtros de busca</p>
+          <input
+            type="text"
+            placeholder="filtrar por nome..."
+            data-testid="name-filter"
+          />
+          <select data-testid="rare-filter">
+            <option>todas</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
+          </select>
+          <label htmlFor="trunfo-filter">
+            <input
+              id="trunfo-filter"
+              type="checkbox"
+              data-testid="trunfo-filter"
+            />
+            Super Trunfo
+          </label>
+        </section>
         <section className="cardList">
           {cardDeck.map((card) => (
             <div key={ card.cardName }>
