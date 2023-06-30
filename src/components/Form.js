@@ -21,10 +21,11 @@ class Form extends Component {
 
     return (
       <form>
-        <h1>Adicione uma nova carta</h1>
+        <h1 className="h2">Adicione uma nova carta</h1>
         <label htmlFor="nome">
           Nome:
           <input
+            className="form-control"
             id="nome"
             type="text"
             name="cardName"
@@ -36,6 +37,7 @@ class Form extends Component {
         <label htmlFor="descricao">
           Descrição
           <textarea
+            className="form-control form-control-lg"
             id="descricao"
             name="cardDescription"
             data-testid="description-input"
@@ -46,6 +48,7 @@ class Form extends Component {
         <label htmlFor="attr1">
           Attr01
           <input
+            className="form-control"
             id="attr1"
             type="number"
             name="cardAttr1"
@@ -57,6 +60,7 @@ class Form extends Component {
         <label htmlFor="attr2">
           Attr02
           <input
+            className="form-control"
             id="attr2"
             type="number"
             name="cardAttr2"
@@ -65,9 +69,10 @@ class Form extends Component {
             onChange={ onInputChange }
           />
         </label>
-        <label htmlFor="attr3">
+        <label className="form-label" htmlFor="attr3">
           Attr03
           <input
+            className="form-control"
             id="attr3"
             type="number"
             name="cardAttr3"
@@ -79,6 +84,7 @@ class Form extends Component {
         <label htmlFor="img-input">
           Imagem
           <input
+            className="form-control"
             type="text"
             data-testid="image-input"
             name="cardImage"
@@ -90,6 +96,7 @@ class Form extends Component {
         <label htmlFor="rarity">
           Raridade
           <select
+            className="form-select"
             data-testid="rare-input"
             name="cardRare"
             id="rarity"
@@ -104,8 +111,9 @@ class Form extends Component {
         {hasTrunfo ? (
           <span>Você já tem um Super Trunfo em seu baralho</span>
         ) : (
-          <label htmlFor="s-trunfo">
+          <label className="form-check-label" htmlFor="s-trunfo">
             <input
+              className="form-check-input"
               type="checkbox"
               checked={ cardTrunfo }
               data-testid="trunfo-input"
@@ -117,6 +125,7 @@ class Form extends Component {
           </label>
         )}
         <button
+          className="btn btn-primary btn-lg"
           type="submit"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
